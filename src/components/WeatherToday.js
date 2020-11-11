@@ -1,34 +1,31 @@
 import React from 'react'
-import { usePosition } from 'use-position';
 import { useFetch } from '../hooks/useFetch';
+import { Weather } from './Weather';
+import PropTypes from 'prop-types';
 
-export const WeatherToday = () => {
-     
-    const options ={
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0
-    }
-    const watch = true;
-    const {
-      latitude,
-      longitude,
-      error,
-    } = usePosition(watch, options);    
+export const WeatherToday = ({lat, lon}) => {
 
-    const url = `https://www.metaweather.com/api/location/search/?lattlong=${latitude},${longitude}` 
-    const data = useFetch(url)
-    console.log(data)
-    
+    const url = `https://www.metaweather.com/api/location/search/?lattlong=${lat},${lon}`         
+    const {data, loading} = useFetch(url) 
+    let woeid = ''     
+
+    if(!loading){
+        woeid = data[0].woeid
+    }  
 
     return (
-        <div>
-            <h1>Weather Today</h1>
-            <code>
-                lat: {latitude}<br/>
-                longitude: {longitude}<br/>
-                error: {error}
-            </code>
+        <div>           
+            {
+                (loading) 
+                    ? <h1>Loading...</h1>
+                    : <Weather woeid={woeid} />
+            }        
+
         </div>
     )
+}
+
+WeatherToday.propTypes = {
+    lat: PropTypes.number.isRequired,
+    lon: PropTypes.number.isRequired
 }
