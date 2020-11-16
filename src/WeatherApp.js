@@ -1,30 +1,35 @@
-import React from 'react'
-import { usePosition } from 'use-position';
-import { WeatherToday } from './components/WeatherToday'
+import React, { useEffect, useState } from 'react'
+import { ModalSearchCity } from './components/ModalSearchCity';
+import { SearchCity } from './components/SearchCity';
+import { Weather } from './components/Weather';
+import getPosition from './helpers/getPosition';
 import './styles.css'
 
 export const WeatherApp = () => {
+  console.log('Renderizando APP')
 
-    //Get current location
-    const options ={
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0
-    }
+  const [modalShow, setModalShow] = useState(false)
+  const [woeid, setWoeid] = useState(0)
+  
+  useEffect( ()=>{
+    getPosition(setWoeid)
+  },[])
+  
+  return (
+    <> 
+      <SearchCity setModalShow={setModalShow}/>
 
-    const watch = true;
-    const {
-        latitude,
-        longitude     
-    } = usePosition(watch, options); 
-    
-    return (
-        <> 
-            {
-                (latitude === undefined || longitude === undefined)
-                    ? <h1>Loading...</h1>
-                    : <WeatherToday lat={latitude} lon={longitude} />
-            } 
-        </>
-    )
+      <ModalSearchCity 
+        modalShow={modalShow}
+        setModalShow={setModalShow}
+        setWoeid={setWoeid}
+      />   
+      {
+        (woeid === 0) 
+          ? <p>Location not found :(</p>
+          : <Weather woeid={woeid}/>
+      }
+
+    </>
+  )
 }
