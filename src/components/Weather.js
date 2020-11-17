@@ -1,17 +1,11 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types';
 import { MdPlace } from "react-icons/md";
 import Moment from 'react-moment';
-import getWeather from '../helpers/getWeather';
 
-export const Weather = ({woeid}) => {
+export const Weather = ({weather}) => {
     console.log('Renderizando Weather component')
-    let abbr, name, temp
-    const [weather, setWeather] = useState('') 
-    
-    useEffect(()=>{
-        getWeather(woeid, setWeather)
-    }, [woeid]) 
+    let abbr, name, temp   
     
     if(weather !== ''){      
        abbr = weather.consolidated_weather[0].weather_state_abbr
@@ -39,5 +33,5 @@ export const Weather = ({woeid}) => {
 }
 
 Weather.propTypes ={
-    woeid: PropTypes.number.isRequired
+    weather: PropTypes.object.isRequired
 }

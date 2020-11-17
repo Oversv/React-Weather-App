@@ -3,6 +3,7 @@ import { ModalSearchCity } from './components/ModalSearchCity';
 import { SearchCity } from './components/SearchCity';
 import { Weather } from './components/Weather';
 import getPosition from './helpers/getPosition';
+import getWeather from './helpers/getWeather';
 import './styles.css'
 
 export const WeatherApp = () => {
@@ -10,10 +11,15 @@ export const WeatherApp = () => {
 
   const [modalShow, setModalShow] = useState(false)
   const [woeid, setWoeid] = useState(0)
+  const [weather, setWeather] = useState('') 
   
   useEffect( ()=>{
     getPosition(setWoeid)
   },[])
+
+  useEffect(()=>{
+    getWeather(woeid, setWeather)
+}, [woeid]) 
   
   return (
     <> 
@@ -25,9 +31,9 @@ export const WeatherApp = () => {
         setWoeid={setWoeid}
       />   
       {
-        (woeid === 0) 
-          ? <p>Location not found :(</p>
-          : <Weather woeid={woeid}/>
+        (weather === '') 
+          ? <p>Location not found :(</p>          
+          : <Weather weather={weather}/>
       }
 
     </>

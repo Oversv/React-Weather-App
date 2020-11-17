@@ -4,8 +4,10 @@
  * @param {state function} fnState 
  */
 const getWeather = async (woeid, fnState) =>{
-
-    if(woeid !== 0) {        
+    
+    if(woeid === 0) {
+        fnState('')
+    }else{
        
         const url = `https://www.metaweather.com/api/location/${woeid}/` 
         const proxyurl ='https://cors-anywhere.herokuapp.com/'; 
