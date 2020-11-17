@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { ModalSearchCity } from './components/ModalSearchCity';
 import { SearchCity } from './components/SearchCity';
 import { Weather } from './components/Weather';
+import { WeatherPanelInfo } from './components/WeatherPanelInfo';
 import getPosition from './helpers/getPosition';
 import getWeather from './helpers/getWeather';
 import './styles.css'
@@ -33,9 +34,12 @@ export const WeatherApp = () => {
       {
         (weather === '') 
           ? <p>Location not found :(</p>          
-          : <Weather weather={weather}/>
+          :<div>
+            <Weather weather={weather}/> 
+            <WeatherPanelInfo weather={weather}/>
+          </div> 
       }
-
+     
     </>
   )
 }
