@@ -1,8 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Moment from 'react-moment';
+import celsiusToFahrenheit from '../helpers/celsiusToFahrenheit';
 
-export const WeatherCard = ({data, abbr, altAttribute, maxTemperature, minTemperature}) => {
+export const WeatherCard = ({data, abbr, altAttribute, maxTemperature, minTemperature, temperatureUnits}) => {
+    
     return (
         <>
             <hr/>
@@ -13,8 +15,19 @@ export const WeatherCard = ({data, abbr, altAttribute, maxTemperature, minTemper
             }
 
            <img src={`assets/img/${abbr}.png`} alt={altAttribute}/>
-           <p>{Math.round(maxTemperature)}ºC</p>
-           <p>{Math.round(minTemperature)}ºC</p>
+
+            {
+               temperatureUnits === 'celsius'
+               ? <>
+                    <p>{Math.round(maxTemperature)}ºC</p>
+                    <p>{Math.round(minTemperature)}ºC</p>
+                </>
+                : <>
+                    <p>{Math.round(celsiusToFahrenheit(maxTemperature))}ºF</p>
+                    <p>{Math.round(celsiusToFahrenheit(minTemperature))}ºF</p>
+                </>    
+            }
+
         </>
     )
 }
@@ -24,5 +37,6 @@ WeatherCard.propTypes = {
     abbr: PropTypes.string.isRequired,
     altAttribute: PropTypes.string.isRequired,
     maxTemperature: PropTypes.number.isRequired,
-    minTemperature: PropTypes.number.isRequired
+    minTemperature: PropTypes.number.isRequired,
+    temperatureUnits: PropTypes.string.isRequired
 }

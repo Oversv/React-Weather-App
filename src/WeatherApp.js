@@ -8,11 +8,11 @@ import getWeather from './helpers/getWeather';
 import './styles.css'
 
 export const WeatherApp = () => {
-  console.log('Renderizando APP')
 
   const [modalShow, setModalShow] = useState(false)
   const [woeid, setWoeid] = useState(0)
   const [weather, setWeather] = useState('') 
+  const [temperatureUnits, setTemperatureUnits] = useState('celsius')
   
   useEffect( ()=>{
     getPosition(setWoeid)
@@ -35,8 +35,15 @@ export const WeatherApp = () => {
         (weather === '') 
           ? <p>Location not found :(</p>          
           :<div>
-            <Weather weather={weather}/> 
-            <WeatherPanelInfo weather={weather}/>
+            <Weather 
+              weather={weather}
+              temperatureUnits={temperatureUnits}
+            /> 
+            <WeatherPanelInfo 
+              weather={weather}
+              temperatureUnits={temperatureUnits}
+              setTemperatureUnits={setTemperatureUnits}
+            />
           </div> 
       }
      

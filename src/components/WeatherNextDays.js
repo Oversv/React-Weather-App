@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { WeatherCard } from './WeatherCard'
 
-export const WeatherNextDays = ({weatherNextDays}) => {
+export const WeatherNextDays = ({weatherNextDays, temperatureUnits}) => {
     
     const weather = weatherNextDays.slice(1)  
   
@@ -17,6 +17,7 @@ export const WeatherNextDays = ({weatherNextDays}) => {
                         altAttribute={weather.weather_state_name}
                         maxTemperature={weather.max_temp}
                         minTemperature={weather.min_temp}
+                        temperatureUnits={temperatureUnits}
                     />
                 )
             }
@@ -25,6 +26,7 @@ export const WeatherNextDays = ({weatherNextDays}) => {
 }
 
 WeatherNextDays.propTypes = {
-    weatherNextDays: PropTypes.array.isRequired
+    weatherNextDays: PropTypes.array.isRequired,
+    temperatureUnits: PropTypes.string.isRequired
 }
 

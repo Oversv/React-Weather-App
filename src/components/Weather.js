@@ -2,9 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import { MdPlace } from "react-icons/md";
 import Moment from 'react-moment';
+import celsiusToFahrenheit from '../helpers/celsiusToFahrenheit';
 
-export const Weather = ({weather}) => {
-    console.log('Renderizando Weather component')
+export const Weather = ({weather, temperatureUnits}) => {
+    
     let abbr, name, temp   
     
     if(weather !== ''){      
@@ -12,16 +13,22 @@ export const Weather = ({weather}) => {
        name = weather.consolidated_weather[0].weather_state_name
        temp = weather.consolidated_weather[0].the_temp
     }
-
+    
     return (
         
         <div>           
             {
-                (weather === '')                 
+                weather === ''                 
                     ? <h2>Getting data...</h2>
                     : <div>
                         <img src={`assets/img/${abbr}.png`} alt={name}/>
-                        <p>{`${Math.round(temp)}ºc`}</p>
+                        
+                        {
+                            temperatureUnits === 'celsius'
+                                ? <p>{`${Math.round(temp)}ºC`}</p>
+                                : <p>{`${Math.round(celsiusToFahrenheit(temp))}ºF`}</p>
+                        }
+                        
                         <p>{name}</p>
                         <p>Today · <Moment format='ddd, D MMM'>{weather.time}</Moment></p>
                         <p><MdPlace /> {weather.title}</p>
@@ -33,5 +40,6 @@ export const Weather = ({weather}) => {
 }
 
 Weather.propTypes ={
-    weather: PropTypes.object.isRequired
+    weather: PropTypes.object.isRequired,
+    temperatureUnits: PropTypes.string.isRequired    
 }

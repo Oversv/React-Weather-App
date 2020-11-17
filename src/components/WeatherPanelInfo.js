@@ -2,11 +2,19 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { WeatherNextDays } from './WeatherNextDays'
 import { WeatherInfoToday } from './WeatherInfoToday'
+import { ConvertTemperature } from './ConvertTemperature'
 
-export const WeatherPanelInfo = ({weather}) => {
+export const WeatherPanelInfo = ({weather, temperatureUnits, setTemperatureUnits}) => {
+    
     return (
         <div>
-            <WeatherNextDays weatherNextDays={weather.consolidated_weather} />
+            <ConvertTemperature 
+                setTemperatureUnits={setTemperatureUnits} 
+            />
+            <WeatherNextDays 
+                weatherNextDays={weather.consolidated_weather} 
+                temperatureUnits={temperatureUnits}
+            />
             <WeatherInfoToday 
                 windSpeed={weather.consolidated_weather[0].wind_speed}
                 windDirection={weather.consolidated_weather[0].wind_direction}
@@ -19,6 +27,8 @@ export const WeatherPanelInfo = ({weather}) => {
 }
 
 WeatherPanelInfo.propTypes = {
-    weather: PropTypes.object.isRequired
+    weather: PropTypes.object.isRequired,
+    temperatureUnits: PropTypes.string.isRequired,
+    setTemperatureUnits: PropTypes.func.isRequired
 }
 
