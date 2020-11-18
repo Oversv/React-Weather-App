@@ -11,8 +11,18 @@ import './styles.css'
 export const WeatherApp = () => {
 
   const [modalShow, setModalShow] = useState(false)
-  const [woeid, setWoeid] = useState(0)
-  const [weather, setWeather] = useState('') 
+  const [woeid, setWoeid] = useState({
+    isLoading: true,
+    error: null,
+    woeid: 0
+  })
+
+  const [weather, setWeather] = useState({
+    isLoading: true,
+    error: null,
+    data: null
+  }) 
+
   const [temperatureUnits, setTemperatureUnits] = useState('celsius')
   
   useEffect( ()=>{
@@ -20,9 +30,9 @@ export const WeatherApp = () => {
   },[])
 
   useEffect(()=>{
-    getWeather(woeid, setWeather)
-}, [woeid]) 
-  
+    getWeather(woeid.woeid, setWeather)
+}, [woeid.woeid]) 
+
   return (
     <> 
       <SearchCity setModalShow={setModalShow}/>
@@ -33,22 +43,21 @@ export const WeatherApp = () => {
         setModalShow={setModalShow}
         setWoeid={setWoeid}
       />   
-      {
-        (weather === '') 
-          ? <p>Location not found :(</p>          
-          :<div>
-            <Weather 
-              weather={weather}
-              temperatureUnits={temperatureUnits}
-            /> 
-            <WeatherPanelInfo 
-              weather={weather}
-              temperatureUnits={temperatureUnits}
-              setTemperatureUnits={setTemperatureUnits}
-            />
-          </div> 
-      }
-     
+      {       
+        (weather.isLoading || woeid.isLoading) 
+          ? (woeid.error) ? <p>Location not found :(</p> : <p>Loading...</p>          
+          : <div>
+              <Weather 
+                weather={weather.data}
+                temperatureUnits={temperatureUnits}
+              /> 
+              <WeatherPanelInfo 
+                weather={weather.data}
+                temperatureUnits={temperatureUnits}
+                setTemperatureUnits={setTemperatureUnits}
+              />
+            </div> 
+      }     
     </>
   )
 }

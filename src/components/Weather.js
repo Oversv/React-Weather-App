@@ -5,22 +5,18 @@ import Moment from 'react-moment';
 import celsiusToFahrenheit from '../helpers/celsiusToFahrenheit';
 
 export const Weather = ({weather, temperatureUnits}) => {
-    
-    let abbr, name, temp   
-    
-    if(weather !== ''){      
-       abbr = weather.consolidated_weather[0].weather_state_abbr
-       name = weather.consolidated_weather[0].weather_state_name
-       temp = weather.consolidated_weather[0].the_temp
-    }
-    
-    return (
-        
+
+    const abbr = weather.consolidated_weather[0].weather_state_abbr
+    const name = weather.consolidated_weather[0].weather_state_name
+    const temp = weather.consolidated_weather[0].the_temp
+    const time = weather.time
+    const title = weather.title
+
+    return (        
         <div>           
             {
-                weather === ''                 
-                    ? <h2>Getting data...</h2>
-                    : <div>
+                !!weather &&
+                    <div>
                         <img src={`assets/img/${abbr}.png`} alt={name}/>
                         
                         {
@@ -30,13 +26,12 @@ export const Weather = ({weather, temperatureUnits}) => {
                         }
                         
                         <p>{name}</p>
-                        <p>Today · <Moment format='ddd, D MMM'>{weather.time}</Moment></p>
-                        <p><MdPlace /> {weather.title}</p>
-                      </div>
+                        <p>Today · <Moment format='ddd, D MMM'>{time}</Moment></p>
+                        <p><MdPlace /> {title}</p>
+                    </div>
             }      
         </div>
-    )
-    
+    )    
 }
 
 Weather.propTypes ={

@@ -4,8 +4,8 @@ import { WeatherNextDays } from './WeatherNextDays'
 import { WeatherInfoToday } from './WeatherInfoToday'
 import { ConvertTemperature } from './ConvertTemperature'
 
-export const WeatherPanelInfo = ({weather, temperatureUnits, setTemperatureUnits}) => {
-    
+export const WeatherPanelInfo = ({weather, temperatureUnits, setTemperatureUnits}) => {    
+   
     return (
         <div>
             <ConvertTemperature 

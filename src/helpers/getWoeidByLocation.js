@@ -6,6 +6,12 @@
 const getWoeidByLocation = async (location, fnState) =>{
   
     if(location !== '') {
+
+        fnState({
+            isLoading: true,
+            error: null,
+            woeid: 0
+        })
     
         const url = `https://www.metaweather.com/api/location/search/?query=${location}` 
         const proxyurl ='https://cors-anywhere.herokuapp.com/'; 
@@ -14,10 +20,18 @@ const getWoeidByLocation = async (location, fnState) =>{
             const resp = await fetch(proxyurl + url )
             const data = await resp.json()
         
-            fnState(data[0].woeid)           
+            fnState({
+                isLoading: false,
+                error: null,
+                woeid: data[0].woeid
+            })       
             
         } catch (error) {            
-            fnState(0) 
+            fnState({
+                isLoading: false,
+                error,
+                woeid: 0
+            })
             console.warn(`${error}: Location not found`)
         }
     }   
