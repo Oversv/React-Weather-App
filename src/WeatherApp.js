@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { CurrentLocation } from './components/CurrentLocation';
 import { ModalSearchCity } from './components/ModalSearchCity';
 import { SearchCity } from './components/SearchCity';
 import { Weather } from './components/Weather';
@@ -25,6 +26,7 @@ export const WeatherApp = () => {
   return (
     <> 
       <SearchCity setModalShow={setModalShow}/>
+      <CurrentLocation setWoeid={setWoeid}/>
 
       <ModalSearchCity 
         modalShow={modalShow}

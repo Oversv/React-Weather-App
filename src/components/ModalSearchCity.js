@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import getWoeidByLocation from '../helpers/getWoeidByLocation';
 import PropTypes from 'prop-types';
+import { getStorage, addStorage } from '../helpers/localStorage';
+import { v4 as id } from 'uuid';
+import LocationItem from './LocationItem';
 
 const Modal = styled.div`
     position: fixed;
@@ -17,21 +20,26 @@ const Modal = styled.div`
 
 export const ModalSearchCity = ({modalShow, setModalShow, setWoeid}) => {  
     
-    //Todo se puede sustituir la x por el + y rotar
-
     const [location, setLocation] = useState('')
+    const [storage, setStorage] = useState(getStorage())
 
     const handleModal = () => setModalShow(false)
     
-    const handleLocation = (e) => setLocation(e.target.value.trim())
+    const handleLocation = (e) => {
+
+        setLocation(e.target.value.trim())
+    }
     
     const handleSubmit = (e) =>{
-        e.preventDefault()      
+ 
+        e.preventDefault()       
 
         if(location.length > 2){
+            addStorage(location)
+            setStorage(getStorage()) 
             getWoeidByLocation(location, setWoeid)
-        }       
-    }
+        }           
+    }    
 
     return (        
        <>
@@ -48,9 +56,15 @@ export const ModalSearchCity = ({modalShow, setModalShow, setWoeid}) => {
                 </form>
 
                 <ul>
-                    <li>London</li>
-                    <li>Barcelona</li>
-                    <li>Long Beach</li>
+                    {
+                        storage.map(locationStorage =>                   
+                            <LocationItem 
+                                key={id()}
+                                locationStorage={locationStorage}
+                                setWoeid={setWoeid}
+                            />
+                        )
+                    }
                 </ul>
 
             </Modal>
