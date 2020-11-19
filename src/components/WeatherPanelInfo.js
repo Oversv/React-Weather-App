@@ -7,22 +7,25 @@ import { ConvertTemperature } from './ConvertTemperature'
 export const WeatherPanelInfo = ({weather, temperatureUnits, setTemperatureUnits}) => {    
    
     return (
-        <div>
-            <ConvertTemperature 
-                setTemperatureUnits={setTemperatureUnits} 
-            />
-            <WeatherNextDays 
-                weatherNextDays={weather.consolidated_weather} 
-                temperatureUnits={temperatureUnits}
-            />
-            <WeatherInfoToday 
-                windSpeed={weather.consolidated_weather[0].wind_speed}
-                windDirection={weather.consolidated_weather[0].wind_direction}
-                humidity={weather.consolidated_weather[0].humidity}
-                visibility={weather.consolidated_weather[0].visibility}
-                airPressure={weather.consolidated_weather[0].air_pressure}
-            />
-        </div>
+        (!!weather)        
+            ? <div>
+                <ConvertTemperature 
+                    setTemperatureUnits={setTemperatureUnits} 
+                />
+                <WeatherNextDays 
+                    weatherNextDays={weather.consolidated_weather} 
+                    temperatureUnits={temperatureUnits}
+                />
+                <WeatherInfoToday 
+                    windSpeed={weather.consolidated_weather[0].wind_speed}
+                    windDirection={weather.consolidated_weather[0].wind_direction}
+                    humidity={weather.consolidated_weather[0].humidity}
+                    visibility={weather.consolidated_weather[0].visibility}
+                    airPressure={weather.consolidated_weather[0].air_pressure}
+                />
+            </div>
+            
+            :<p>Error</p>
     )
 }
 

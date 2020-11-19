@@ -35,29 +35,33 @@ export const WeatherApp = () => {
 
   return (
     <> 
-      <SearchCity setModalShow={setModalShow}/>
-      <CurrentLocation setWoeid={setWoeid}/>
+      <div>
+        <SearchCity setModalShow={setModalShow}/>
+        <CurrentLocation setWoeid={setWoeid}/>
 
-      <ModalSearchCity 
-        modalShow={modalShow}
-        setModalShow={setModalShow}
-        setWoeid={setWoeid}
-      />   
-      {       
-        (weather.isLoading || woeid.isLoading) 
-          ? (woeid.error) ? <p>Location not found :(</p> : <p>Loading...</p>          
-          : <div>
-              <Weather 
-                weather={weather.data}
-                temperatureUnits={temperatureUnits}
-              /> 
-              <WeatherPanelInfo 
-                weather={weather.data}
-                temperatureUnits={temperatureUnits}
-                setTemperatureUnits={setTemperatureUnits}
-              />
-            </div> 
-      }     
+        <ModalSearchCity 
+          modalShow={modalShow}
+          setModalShow={setModalShow}
+          setWoeid={setWoeid}
+        />   
+        {       
+          (weather.isLoading || woeid.isLoading) 
+            ? (woeid.error) ? <p>Location not found :(</p> : <p>Loading...</p>          
+            : <div>
+                <Weather 
+                  weather={weather.data}                  
+                  temperatureUnits={temperatureUnits}
+                /> 
+                <WeatherPanelInfo 
+                  weather={weather.data}
+                  temperatureUnits={temperatureUnits}
+                  setTemperatureUnits={setTemperatureUnits}
+                />
+              </div> 
+        }     
+
+      </div>
+
     </>
   )
 }

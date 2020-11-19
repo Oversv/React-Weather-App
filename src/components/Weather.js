@@ -15,8 +15,8 @@ export const Weather = ({weather, temperatureUnits}) => {
     return (        
         <div>           
             {
-                !!weather &&
-                    <div>
+                (!!weather)
+                    ? <div>
                         <img src={`assets/img/${abbr}.png`} alt={name}/>
                         
                         {
@@ -29,6 +29,8 @@ export const Weather = ({weather, temperatureUnits}) => {
                         <p>Today · <Moment format='ddd, D MMM'>{time}</Moment></p>
                         <p><MdPlace /> {title}</p>
                     </div>
+                    
+                    : <p>Error</p>
             }      
         </div>
     )    
