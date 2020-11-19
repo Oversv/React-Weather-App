@@ -3,36 +3,75 @@ import PropTypes from 'prop-types';
 import { MdPlace } from "react-icons/md";
 import Moment from 'react-moment';
 import celsiusToFahrenheit from '../helpers/celsiusToFahrenheit';
+import styled from 'styled-components'
+
+const Section = styled.section`
+    text-align: center;
+`
+const Img = styled.img`
+    width: 175px;
+    height: 175px;
+`
+const Temperature = styled.p`
+    font-size: 144px;
+    font-weight: 500;
+    color: white;
+    margin: 0;    
+`
+const Span = styled.span`
+    font-size: 48px;
+    font-weight: 500;
+    color: ${({theme}) => theme.second};     
+`
+const WeatherName = styled.p`
+    font-size: 36px;
+    font-weight: 600;
+`
+const Date = styled.p`   
+    font-weight: 500;
+    word-spacing: 16px;
+`
+const SpanMoment = styled.span`
+    word-spacing: 0px;
+`
+const City = styled.p`  
+    font-weight: 600;
+`
 
 export const Weather = ({weather, temperatureUnits}) => {
 
-    const abbr = weather.consolidated_weather[0].weather_state_abbr
-    const name = weather.consolidated_weather[0].weather_state_name
-    const temp = weather.consolidated_weather[0].the_temp
-    const time = weather.time
-    const title = weather.title
+    let abbr, name, temp, time, title
+
+    //!Controlar el null aquí usar
+    if(!!weather){
+         abbr = weather.consolidated_weather[0].weather_state_abbr
+         name = weather.consolidated_weather[0].weather_state_name
+         temp = weather.consolidated_weather[0].the_temp
+         time = weather.time
+         title = weather.title
+    }
 
     return (        
-        <div>           
+        <Section>           
             {
                 (!!weather)
                     ? <div>
-                        <img src={`assets/img/${abbr}.png`} alt={name}/>
+                        <Img src={`assets/img/${abbr}.png`} alt={name}/>
                         
                         {
                             temperatureUnits === 'celsius'
-                                ? <p>{`${Math.round(temp)}ºC`}</p>
-                                : <p>{`${Math.round(celsiusToFahrenheit(temp))}ºF`}</p>
+                                ? <Temperature>{Math.round(temp)}<Span>ºC</Span></Temperature>
+                                : <Temperature>{Math.round(celsiusToFahrenheit(temp))}<Span>ºF</Span></Temperature>
                         }
                         
-                        <p>{name}</p>
-                        <p>Today · <Moment format='ddd, D MMM'>{time}</Moment></p>
-                        <p><MdPlace /> {title}</p>
+                        <WeatherName>{name}</WeatherName>
+                        <Date>Today · <SpanMoment><Moment format='ddd, D MMM'>{time}</Moment></SpanMoment></Date>
+                        <City><MdPlace />{` ${title}`}</City>
                     </div>
                     
-                    : <p>Error</p>
+                    : <p>Error</p>            
             }      
-        </div>
+        </Section>
     )    
 }
 
