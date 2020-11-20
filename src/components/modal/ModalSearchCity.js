@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import getWoeidByLocation from '../helpers/getWoeidByLocation';
+import getWoeidByLocation from '../../helpers/getWoeidByLocation';
 import PropTypes from 'prop-types';
-import { getStorage, addStorage } from '../helpers/localStorage';
+import { getStorage, addStorage } from '../../helpers/localStorage';
 import { v4 as id } from 'uuid';
 import LocationItem from './LocationItem';
 

@@ -38,44 +38,50 @@ const City = styled.p`
     font-weight: 600;
 `
 
-export const Weather = ({weather, temperatureUnits}) => {
+export const Weather = ({isLoading, error, weather, temperatureUnits}) => {
+    // console.log('Dentro del weather')
+    // console.log(isLoading)
+    // console.log(error)
+    // console.log(weather)
 
-    let abbr, name, temp, time, title
+    if(isLoading){
 
-    //!Controlar el null aquí usar
-    if(!!weather){
-         abbr = weather.consolidated_weather[0].weather_state_abbr
-         name = weather.consolidated_weather[0].weather_state_name
-         temp = weather.consolidated_weather[0].the_temp
-         time = weather.time
-         title = weather.title
-    }
+        return(<Section><p>Getting data</p></Section>)
 
-    return (        
-        <Section>           
-            {
-                (!!weather)
-                    ? <div>
-                        <Img src={`assets/img/${abbr}.png`} alt={name}/>
-                        
-                        {
-                            temperatureUnits === 'celsius'
-                                ? <Temperature>{Math.round(temp)}<Span>ºC</Span></Temperature>
-                                : <Temperature>{Math.round(celsiusToFahrenheit(temp))}<Span>ºF</Span></Temperature>
-                        }
-                        
-                        <WeatherName>{name}</WeatherName>
-                        <Date>Today · <SpanMoment><Moment format='ddd, D MMM'>{time}</Moment></SpanMoment></Date>
-                        <City><MdPlace />{` ${title}`}</City>
-                    </div>
+    }else if(error){
+
+        return(<Section><p>OPPS! Data not found :(</p></Section>)
+
+    }else{
+
+        const abbr = weather.consolidated_weather[0].weather_state_abbr
+        const name = weather.consolidated_weather[0].weather_state_name
+        const temp = weather.consolidated_weather[0].the_temp
+        const time = weather.time
+        const title = weather.title
+
+        return(
+            <Section>   
+                <div>
+                    <Img src={`assets/img/${abbr}.png`} alt={name}/>
                     
-                    : <p>Error</p>            
-            }      
+                    {
+                        temperatureUnits === 'celsius'
+                            ? <Temperature>{Math.round(temp)}<Span>ºC</Span></Temperature>
+                            : <Temperature>{Math.round(celsiusToFahrenheit(temp))}<Span>ºF</Span></Temperature>
+                    }
+                    
+                    <WeatherName>{name}</WeatherName>
+                    <Date>Today · <SpanMoment><Moment format='ddd, D MMM'>{time}</Moment></SpanMoment></Date>
+                    <City><MdPlace />{` ${title}`}</City>
+                </div>
         </Section>
-    )    
+    
+        )
+    }
 }
 
 Weather.propTypes ={
-    weather: PropTypes.object.isRequired,
+    weather: PropTypes.object,//!Añadir el resto, he cambiado el isRequired
     temperatureUnits: PropTypes.string.isRequired    
 }

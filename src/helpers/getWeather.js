@@ -3,15 +3,15 @@
  * @param {number} woeid 
  * @param {state function} fnState 
  */
-const getWeather = async (woeid, fnState) =>{    
-  
-    fnState({
-        isLoading: true,
-        error: null,
-        data: null,
-    })
+const getWeather = async (woeid, fnState) =>{  
+    
+    if(woeid !== 0 ){
 
-    if(woeid !== 0){
+        fnState({
+            isLoading: true,
+            error: null,
+            data: null           
+        })
        
         const url = `https://www.metaweather.com/api/location/${woeid}/` 
         const proxyurl ='https://cors-anywhere.herokuapp.com/'; 
@@ -29,7 +29,7 @@ const getWeather = async (woeid, fnState) =>{
         } catch (error) {
             fnState({
                 isLoading: false,
-                error,
+                error: true,
                 data: null,
             })
             console.warn(error)

@@ -4,13 +4,13 @@
  * @param {state function} fnState 
  */
 const getWoeidByLocation = async (location, fnState) =>{
-  
+    
     if(location !== '') {
 
         fnState({
             isLoading: true,
             error: null,
-            woeid: 0
+            woeid: 0      
         })
     
         const url = `https://www.metaweather.com/api/location/search/?query=${location}` 
@@ -19,18 +19,18 @@ const getWoeidByLocation = async (location, fnState) =>{
         try {
             const resp = await fetch(proxyurl + url )
             const data = await resp.json()
-        
+            
             fnState({
                 isLoading: false,
                 error: null,
                 woeid: data[0].woeid
             })       
             
-        } catch (error) {            
+        } catch (error) {                      
             fnState({
                 isLoading: false,
-                error,
-                woeid: 0
+                error: true,
+                woeid: 0                
             })
             console.warn(`${error}: Location not found`)
         }

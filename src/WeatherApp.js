@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { CurrentLocation } from './components/CurrentLocation';
-import { ModalSearchCity } from './components/ModalSearchCity';
-import { SearchCity } from './components/SearchCity';
+import { ModalSearchCity } from './components/modal/ModalSearchCity';
+import { SearchCity } from './components/modal/SearchCity';
 import { Weather } from './components/Weather';
 import { WeatherPanelInfo } from './components/WeatherPanelInfo';
 import getPosition from './helpers/getPosition';
@@ -83,22 +83,25 @@ export const WeatherApp = () => {
             setModalShow={setModalShow}
             setWoeid={setWoeid}
           />   
-          { 
-            //!Refactor: Hacer esta lógica en los componentes
-            (weather.isLoading || woeid.isLoading) 
-              ? (woeid.error) ? <p>Location not found :(</p> : <p>Loading...</p>          
-              : <div>
-                  <Weather 
-                    weather={weather.data}                  
-                    temperatureUnits={temperatureUnits}
-                  /> 
-                  {/* Refactor: Hacer esta lógica en los componentes */}
-                  {/* <WeatherPanelInfo 
-                    weather={weather.data}
-                    temperatureUnits={temperatureUnits}
-                    setTemperatureUnits={setTemperatureUnits}
-                  /> */}
-                </div> 
+          {           
+            (woeid.isLoading) 
+              ? <p>Loading...</p>          
+              : (woeid.error) 
+                ? <p>Location not found</p>
+                :<div>
+                    <Weather 
+                      isLoading={weather.isLoading}
+                      error={weather.error}
+                      weather={weather.data}                  
+                      temperatureUnits={temperatureUnits}
+                    /> 
+                   
+                    {/* <WeatherPanelInfo 
+                      weather={weather.data}
+                      temperatureUnits={temperatureUnits}
+                      setTemperatureUnits={setTemperatureUnits}
+                    /> */}
+                  </div> 
           }     
 
         </main>
