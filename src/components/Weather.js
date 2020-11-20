@@ -7,10 +7,12 @@ import styled from 'styled-components'
 
 const Section = styled.section`
     text-align: center;
+    margin-top: 50px;    
 `
 const Img = styled.img`
     width: 175px;
     height: 175px;
+    margin-bottom: 40px;
 `
 const Temperature = styled.p`
     font-size: 144px;
@@ -26,23 +28,28 @@ const Span = styled.span`
 const WeatherName = styled.p`
     font-size: 36px;
     font-weight: 600;
+    margin-top: 23px;   
 `
 const Date = styled.p`   
     font-weight: 500;
     word-spacing: 16px;
+    margin-bottom: 33px;
 `
 const SpanMoment = styled.span`
     word-spacing: 0px;
 `
 const City = styled.p`  
     font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+`
+const SpanIcon = styled.span` 
+    font-size: 1.4em;
+    margin-right: 5px;
 `
 
 export const Weather = ({isLoading, error, weather, temperatureUnits}) => {
-    // console.log('Dentro del weather')
-    // console.log(isLoading)
-    // console.log(error)
-    // console.log(weather)
 
     if(isLoading){
 
@@ -61,22 +68,21 @@ export const Weather = ({isLoading, error, weather, temperatureUnits}) => {
         const title = weather.title
 
         return(
-            <Section>   
-                <div>
-                    <Img src={`assets/img/${abbr}.png`} alt={name}/>
-                    
-                    {
-                        temperatureUnits === 'celsius'
-                            ? <Temperature>{Math.round(temp)}<Span>ºC</Span></Temperature>
-                            : <Temperature>{Math.round(celsiusToFahrenheit(temp))}<Span>ºF</Span></Temperature>
-                    }
-                    
-                    <WeatherName>{name}</WeatherName>
-                    <Date>Today · <SpanMoment><Moment format='ddd, D MMM'>{time}</Moment></SpanMoment></Date>
-                    <City><MdPlace />{` ${title}`}</City>
-                </div>
-        </Section>
-    
+            <Section>       
+                <Img src={`assets/img/${abbr}.png`} alt={name}/>
+                
+                {
+                    temperatureUnits === 'celsius'
+                        ? <Temperature>{Math.round(temp)}<Span>ºC</Span></Temperature>
+                        : <Temperature>{Math.round(celsiusToFahrenheit(temp))}<Span>ºF</Span></Temperature>
+                }
+                
+                <WeatherName>{name}</WeatherName>
+                <Date>Today · <SpanMoment><Moment format='ddd, D MMM'>{time}</Moment></SpanMoment></Date>
+                <City>
+                    <SpanIcon><MdPlace /></SpanIcon>{` ${title}`}
+                </City>              
+            </Section>    
         )
     }
 }

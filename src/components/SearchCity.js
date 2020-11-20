@@ -2,13 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import styled from 'styled-components'
 
+
 const Button = styled.button`
     background-color: ${({theme}) => theme.third};
     color: ${({theme}) => theme.fourth};
     font-weight: 500;
     font-size: 16px;
-    padding: 11px 18px;
-    
+    padding: 0 16px;
+    height: 40px;
+    cursor: pointer;
+    border: none;    
 `
 
 export const SearchCity = ({setModalShow}) => {

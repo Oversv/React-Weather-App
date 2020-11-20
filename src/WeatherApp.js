@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { CurrentLocation } from './components/CurrentLocation';
 import { ModalSearchCity } from './components/modal/ModalSearchCity';
-import { SearchCity } from './components/modal/SearchCity';
+import { SearchCity } from './components/SearchCity';
 import { Weather } from './components/Weather';
 import { WeatherPanelInfo } from './components/WeatherPanelInfo';
 import getPosition from './helpers/getPosition';
@@ -24,8 +24,9 @@ const GlobalStyle = createGlobalStyle`
 
   main{
     position: relative;
-    height: 100vh;       
-    background-color: ${({theme}) => theme.first};    
+    min-height: 100vh;       
+    background-color: ${({theme}) => theme.first};
+    overflow: hidden;    
     
     &::before{
       content: url("./assets/img/Cloud-background.png");
