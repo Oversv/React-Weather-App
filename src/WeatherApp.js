@@ -3,7 +3,7 @@ import { CurrentLocation } from './components/CurrentLocation';
 import { ModalSearchCity } from './components/modal/ModalSearchCity';
 import { SearchCity } from './components/SearchCity';
 import { Weather } from './components/Weather';
-import { WeatherPanelInfo } from './components/WeatherPanelInfo';
+import { WeatherPanelInfo } from './components/panelInfo/WeatherPanelInfo';
 import getPosition from './helpers/getPosition';
 import getWeather from './helpers/getWeather';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
@@ -97,17 +97,18 @@ export const WeatherApp = () => {
                       temperatureUnits={temperatureUnits}
                     /> 
                    
-                    {/* <WeatherPanelInfo 
+                     <WeatherPanelInfo
+                      isLoading={weather.isLoading}
+                      error={weather.error} 
                       weather={weather.data}
                       temperatureUnits={temperatureUnits}
                       setTemperatureUnits={setTemperatureUnits}
-                    /> */}
+                    /> 
                   </div> 
           }     
 
         </main>
       </ThemeProvider>
-
     </>
   )
 }

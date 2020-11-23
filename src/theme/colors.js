@@ -6,5 +6,6 @@ export default {
     second: '#A09FB1',
     third: '#6E707A',
     fourth: '#E7E7EB',
-    bgBtn: '#3C47E9'
+    bgBtn: '#3C47E9',
+    bgPanelInfo: '#100E1D'
 }

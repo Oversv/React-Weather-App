@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import getWoeidByLocation from '../../helpers/getWoeidByLocation'
 import styled from 'styled-components'
@@ -10,25 +10,36 @@ const Item = styled.li`
     margin: 25px 0px;
     display: flex;
     justify-content: space-between;
+    color: ${({theme}) => theme.second};
 
     &:hover{
         border: 1px solid #616475;
         cursor: pointer;
-    }
+    }    
 `
-//TODO Hacer lo del active
-
-
 
 const LocationItem = ({locationStorage, setWoeid}) => {
     
-    const handleClick = () =>{
-        
+    const [hover, setHover] = useState(false)
+
+    const handleClick = () =>{        
         getWoeidByLocation(locationStorage, setWoeid)
+    }
+    
+    const handleMouseEnter = () =>{
+        setHover(true)
+    }
+
+    const handleMouseLeave = () =>{
+        setHover(false)
     }
 
     return (
-        <Item onClick={handleClick}>{locationStorage} <MdNavigateNext /></Item>
+        <Item             
+            onClick={handleClick}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+        >{locationStorage}{hover && <MdNavigateNext />}</Item>
     )
 }
 

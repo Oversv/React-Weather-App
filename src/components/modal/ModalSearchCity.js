@@ -7,7 +7,6 @@ import { v4 as id } from 'uuid';
 import LocationItem from './LocationItem';
 import { MdClose, MdSearch } from 'react-icons/md';
 
-
 const Modal = styled.div`
     position: fixed;
     top: 0;
@@ -19,7 +18,6 @@ const Modal = styled.div`
     transform: ${({modalShow}) => modalShow ? 'scale(1)' : 'scale(0)'};  
     transition: transform .3s;  
 `;
-
 const CloseModal = styled.p`
     position: absolute;
     top: -10px;
@@ -32,22 +30,19 @@ const Form = styled.form`
     justify-content: space-evenly;
     align-items: center;       
 `
-
 const WrapperInput = styled.div`   
     position: relative;
     display: flex;  
     align-items: center;
     color: ${({theme}) => theme.second};
 `
-
 const Input = styled.input`
     height: 48px;
     width: 252px;   
     border: 1px solid white; 
     color: ${({theme}) => theme.second};
     background-color: ${({theme}) => theme.first};
-    padding-left: 50px;    
-
+    padding-left: 50px; 
 `
 const Search = styled.input`
     height: 48px;

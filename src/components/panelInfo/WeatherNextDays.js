@@ -1,13 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { WeatherCard } from './WeatherCard'
+import styled from 'styled-components'
+
+const Container = styled.div`
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 130px));
+    gap: 2em 26px;
+    justify-content: center;
+`
 
 export const WeatherNextDays = ({weatherNextDays, temperatureUnits}) => {
     
     const weather = weatherNextDays.slice(1)  
   
     return (
-        <div>
+        <Container>
             {
                 weather.map( (weather, i) => 
                    <WeatherCard 
@@ -21,7 +29,7 @@ export const WeatherNextDays = ({weatherNextDays, temperatureUnits}) => {
                     />
                 )
             }
-        </div>
+        </Container>
     )
 }
 
