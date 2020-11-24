@@ -8,6 +8,7 @@ const Container = styled.div`
     grid-template-columns: repeat(auto-fill, minmax(130px, 130px));
     gap: 2em 26px;
     justify-content: center;
+    //TODO Grid responsive
 `
 
 export const WeatherNextDays = ({weatherNextDays, temperatureUnits}) => {

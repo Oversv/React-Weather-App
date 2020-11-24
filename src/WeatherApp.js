@@ -43,6 +43,9 @@ const TopBar = styled.section`
   justify-content: space-between;
   padding: 18px 12px;
 `
+const Info = styled.p`
+  text-align: center;
+`
 
 export const WeatherApp = () => {
 
@@ -86,9 +89,9 @@ export const WeatherApp = () => {
           />   
           {           
             (woeid.isLoading) 
-              ? <p>Loading...</p>          
+              ? <Info>Loading...</Info>          
               : (woeid.error) 
-                ? <p>Location not found</p>
+                ? <Info>Location not found</Info>
                 :<div>
                     <Weather 
                       isLoading={weather.isLoading}

@@ -53,7 +53,7 @@ export const Weather = ({isLoading, error, weather, temperatureUnits}) => {
 
     if(isLoading){
 
-        return(<Section><p>Getting data</p></Section>)
+        return(<Section><p>Getting data...</p></Section>)
 
     }else if(error){
 

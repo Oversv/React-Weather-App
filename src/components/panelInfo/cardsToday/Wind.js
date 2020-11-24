@@ -2,14 +2,17 @@ import React from 'react'
 import styled from 'styled-components'
 import { MdNavigation } from 'react-icons/md';
 
-const CardTitle = styled.h3`
+const CardTitle = styled.h2`
     font-size: 16px;
     font-weight: 500;
+    margin-top: 22px;
+    margin-bottom: 0%;
 `
 const CardValue = styled.p`
     font-size: 64px;
     font-weight: 700;
-    margin: 0;
+    margin-top: 6px;
+    margin-bottom: 30px;
 `
 const CardUnits = styled.span`
     font-size: 36px;
@@ -23,15 +26,12 @@ const ContainerWindDirection = styled.div`
 const Icon = styled.i`
     background-color: ${({theme}) => theme.third};
     border-radius: 50%;
-    width: 21px;
-    height: 21px;
+    width: 28px;
+    height: 28px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    
-    //transform: rotate(199.17337245078878deg)
-    //TODO buscar como psar la prop, he cambiado los datos de la prop
-    padding: ${props => props.windDirection}px;
+    align-items: center; 
+    transform: rotate(${props => props.windDirection}deg);
 `
 const WindDirectionCompas = styled.p`
     font-size: 14px;
@@ -46,9 +46,14 @@ export const Wind = ({windSpeed, windDirection, windDirectionCompas}) => {
             <CardTitle>Wind status</CardTitle>
             <CardValue>{Math.round(windSpeed)}<CardUnits>mph</CardUnits></CardValue>
             <ContainerWindDirection>
-                <Icon><MdNavigation size="0.6em"/></Icon>
+                <Icon
+                    windDirection={windDirection}
+                    ><MdNavigation size="0.8em"/>
+                </Icon>
                 <WindDirectionCompas>{windDirectionCompas}</WindDirectionCompas>
             </ContainerWindDirection> 
         </>
     )
 }
+
+//TODO proptypes 
