@@ -7,7 +7,10 @@ import styled from 'styled-components'
 
 const Section = styled.section`
     text-align: center;
-    margin-top: 50px;    
+    margin-top: 50px;
+    grid-column: 1;
+    grid-row: 2;
+       
 `
 const Img = styled.img`
     width: 175px;

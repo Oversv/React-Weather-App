@@ -4,9 +4,17 @@ import { WeatherNextDays } from './WeatherNextDays'
 import { WeatherInfoToday } from './WeatherInfoToday'
 import { ConvertTemperature } from './ConvertTemperature'
 import styled from 'styled-components'
+import MediaQuery from 'react-responsive'
 
-const PanelInfo = styled.div`
+const PanelInfo = styled.section`
+    grid-column: 2;
+    grid-row: 1 / span 2;
     background-color: ${({theme}) => theme.bgPanelInfo};
+    padding-top: 52px;
+
+    @media (min-width: 1024px) {
+        padding-top: 42px;         
+    }      
 `
 
 export const WeatherPanelInfo = ({isLoading, error, weather, temperatureUnits, setTemperatureUnits}) => {    
@@ -16,9 +24,11 @@ export const WeatherPanelInfo = ({isLoading, error, weather, temperatureUnits, s
     }else{
         return(
             <PanelInfo>
-                <ConvertTemperature 
-                    setTemperatureUnits={setTemperatureUnits} 
-                />
+                <MediaQuery minDeviceWidth={1024}>                    
+                    <ConvertTemperature 
+                        setTemperatureUnits={setTemperatureUnits} 
+                    />
+                </MediaQuery>
                 <WeatherNextDays 
                     weatherNextDays={weather.consolidated_weather} 
                     temperatureUnits={temperatureUnits}

@@ -8,6 +8,9 @@ import { AirPressure } from './cardsToday/AirPressure'
 
 const TodaySection = styled.section`
     margin-top: 51px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 760px;    
 `
 const CardContainer = styled.div`
     display: flex;
@@ -18,7 +21,7 @@ const Title = styled.h1`
     font-size: 24px;
     font-weight: 700;
     color: ${({theme}) => theme.fourth};    
-    margin-left: 21px;
+    margin-left: 24px;
     margin-bottom: 32px;
 `
 const Card = styled.section`

@@ -36,12 +36,22 @@ const GlobalStyle = createGlobalStyle`
       opacity: 0.1;
       transform: scale(0.85)
     }
+
+    @media (min-width: 1024px) {
+      display: grid;
+      grid-template-columns: 460px auto;
+      grid-template-rows: 100px auto;           
+    }
   }
 `
 const TopBar = styled.section`
   display: flex;
   justify-content: space-between;
-  padding: 18px 12px;
+  padding: 18px 12px; 
+
+    @media (min-width: 1024px) {
+        padding-top: 42px;         
+    } 
 `
 const Info = styled.p`
   text-align: center;
@@ -92,7 +102,7 @@ export const WeatherApp = () => {
               ? <Info>Loading...</Info>          
               : (woeid.error) 
                 ? <Info>Location not found</Info>
-                :<div>
+                :<>
                     <Weather 
                       isLoading={weather.isLoading}
                       error={weather.error}
@@ -107,7 +117,7 @@ export const WeatherApp = () => {
                       temperatureUnits={temperatureUnits}
                       setTemperatureUnits={setTemperatureUnits}
                     /> 
-                  </div> 
+                  </> 
           }     
 
         </main>

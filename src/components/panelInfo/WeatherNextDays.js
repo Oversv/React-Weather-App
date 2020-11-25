@@ -5,10 +5,10 @@ import styled from 'styled-components'
 
 const Container = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(130px, 130px));
+    grid-template-columns: repeat(auto-fit, minmax(120px, 120px));
     gap: 2em 26px;
-    justify-content: center;
-    //TODO Grid responsive
+    justify-content: center; 
+    margin: 0 10px;    
 `
 
 export const WeatherNextDays = ({weatherNextDays, temperatureUnits}) => {

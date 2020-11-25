@@ -16,7 +16,12 @@ const Modal = styled.div`
     background-color: ${({theme}) =>theme.first};
     color: #E7E7EB;
     transform: ${({modalShow}) => modalShow ? 'scale(1)' : 'scale(0)'};  
-    transition: transform .3s;  
+    transition: transform .3s;
+
+    @media (min-width: 1024px) {
+        width: 460px;         
+    }     
+    
 `;
 const CloseModal = styled.p`
     position: absolute;
