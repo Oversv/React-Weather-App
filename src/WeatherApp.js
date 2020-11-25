@@ -9,7 +9,6 @@ import getWeather from './helpers/getWeather';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
 import colors from './theme/colors';
 
-
 const GlobalStyle = createGlobalStyle`
   *,
   *::before,
@@ -19,15 +18,15 @@ const GlobalStyle = createGlobalStyle`
   body{
     color: ${({theme}) => theme.second};
     font-family: 'Raleway', sans-serif;
-    font-size: 18px;
+    font-size: 18px;    
   }
 
   main{
-    position: relative;
-    min-height: 100vh;       
+    position: relative;    
     background-color: ${({theme}) => theme.first};
-    overflow: hidden;    
-    
+    min-height: 100vh;
+    overflow: hidden;
+
     &::before{
       content: url("./assets/img/Cloud-background.png");
       position: absolute;
@@ -50,7 +49,7 @@ const TopBar = styled.section`
   padding: 18px 12px; 
 
     @media (min-width: 1024px) {
-        padding-top: 42px;         
+        padding: 42px 46px;         
     } 
 `
 const Info = styled.p`

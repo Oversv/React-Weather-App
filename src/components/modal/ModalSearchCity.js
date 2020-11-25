@@ -17,11 +17,11 @@ const Modal = styled.div`
     color: #E7E7EB;
     transform: ${({modalShow}) => modalShow ? 'scale(1)' : 'scale(0)'};  
     transition: transform .3s;
+    z-index: 100;
 
     @media (min-width: 1024px) {
         width: 460px;         
-    }     
-    
+    }
 `;
 const CloseModal = styled.p`
     position: absolute;
@@ -30,9 +30,9 @@ const CloseModal = styled.p`
     cursor: pointer;   
 `
 const Form = styled.form`
-    margin-top: 60px;
+    margin: 60px 12px 0 12px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;    
     align-items: center;       
 `
 const WrapperInput = styled.div`   
@@ -76,7 +76,7 @@ export const ModalSearchCity = ({modalShow, setModalShow, setWoeid}) => {
     
     const handleLocation = (e) => {
 
-        setLocation(e.target.value.trim())
+        setLocation(e.target.value.trim())      
     }
     
     const handleSubmit = (e) =>{
@@ -86,7 +86,9 @@ export const ModalSearchCity = ({modalShow, setModalShow, setWoeid}) => {
         if(location.length > 2){
             addStorage(location)
             setStorage(getStorage()) 
-            getWoeidByLocation(location, setWoeid)
+            getWoeidByLocation(location, setWoeid) 
+            
+            e.target.reset()
         }           
     }    
 

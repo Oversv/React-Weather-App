@@ -5,11 +5,11 @@ import celsiusToFahrenheit from '../../helpers/celsiusToFahrenheit';
 import styled from 'styled-components'
 
 const Card = styled.div`
-    width: 130px;
+    width: 120px;
     height: 177px;
     padding: 1em;   
     text-align: center;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
     color: ${({theme}) => theme.fourth};
     background-color: ${({theme}) => theme.first};

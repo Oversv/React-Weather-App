@@ -7,21 +7,24 @@ import styled from 'styled-components'
 
 const Section = styled.section`
     text-align: center;
-    margin-top: 50px;
-    grid-column: 1;
-    grid-row: 2;
-       
+    margin-top: 58px;     
+    height: calc(100vh - 134px );//134 = 76+58
+    
+    @media (min-width: 1024px) {
+        grid-column: 1;
+        grid-row: 2;     
+    }      
 `
 const Img = styled.img`
     width: 175px;
-    height: 175px;
-    margin-bottom: 40px;
+    height: 175px; 
 `
 const Temperature = styled.p`
     font-size: 144px;
     font-weight: 500;
     color: white;
-    margin: 0;    
+    margin-top: 40px;
+    margin-bottom: 0;    
 `
 const Span = styled.span`
     font-size: 48px;
@@ -31,12 +34,23 @@ const Span = styled.span`
 const WeatherName = styled.p`
     font-size: 36px;
     font-weight: 600;
-    margin-top: 23px;   
+    margin-top: 23px;
+    margin-bottom: 48px;
+
+    @media (min-width: 1024px) {
+        margin-top: 87px;
+        margin-bottom: 0;
+    }     
 `
 const Date = styled.p`   
     font-weight: 500;
     word-spacing: 16px;
-    margin-bottom: 33px;
+    margin-top: 0;
+    margin-bottom: 32px;
+
+    @media (min-width: 1024px) {
+        margin-top: 87px;
+    }  
 `
 const SpanMoment = styled.span`
     word-spacing: 0px;
@@ -45,7 +59,8 @@ const City = styled.p`
     font-weight: 600;
     display: flex;
     justify-content: center;
-    align-items: center;   
+    align-items: center;
+    margin: 0;   
 `
 const SpanIcon = styled.span` 
     font-size: 1.4em;

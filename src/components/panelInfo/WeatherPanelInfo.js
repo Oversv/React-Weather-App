@@ -25,7 +25,7 @@ export const WeatherPanelInfo = ({isLoading, error, weather, temperatureUnits, s
         return(
             <PanelInfo>
                 <MediaQuery minDeviceWidth={1024}>                    
-                    <ConvertTemperature 
+                    <ConvertTemperature                         
                         setTemperatureUnits={setTemperatureUnits} 
                     />
                 </MediaQuery>
