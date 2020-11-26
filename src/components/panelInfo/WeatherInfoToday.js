@@ -58,7 +58,7 @@ export const WeatherInfoToday = ({windSpeed, windDirection, windDirectionCompas,
 
                 <SmallCard>
                     <Visibility
-                        visibility={visibility.toFixed(1).replace(/\./g, ',')}
+                        visibility={visibility}
                     /> 
                 </SmallCard>
 

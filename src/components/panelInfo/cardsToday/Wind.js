@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { MdNavigation } from 'react-icons/md';
+import PropTypes from 'prop-types'
 
 const CardTitle = styled.h2`
     font-size: 16px;
@@ -56,4 +57,8 @@ export const Wind = ({windSpeed, windDirection, windDirectionCompas}) => {
     )
 }
 
-//TODO proptypes 
+Wind.propTypes = {
+    windSpeed: PropTypes.number.isRequired,
+    windDirection: PropTypes.number.isRequired,
+    windDirectionCompas: PropTypes.string.isRequired
+}

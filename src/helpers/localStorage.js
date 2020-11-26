@@ -1,3 +1,6 @@
+/**
+ * Return de data from de localstorage
+ */
 const getStorage = () =>{
 
     const data = JSON.parse(localStorage.getItem('location'))   
@@ -11,6 +14,10 @@ const getStorage = () =>{
     return data.reverse()
 }
 
+/**
+ * Save the data in the localstoragr
+ * @param {string} newElement 
+ */
 const addStorage = (newElement) =>{
 
     let data = getStorage().reverse()  
@@ -23,7 +30,6 @@ const addStorage = (newElement) =>{
 
     localStorage.setItem('location', JSON.stringify(data))
 }
-
 
 export {
     getStorage,

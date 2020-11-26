@@ -23,8 +23,8 @@ const Button = styled.button`
 `
 
 export const ConvertTemperature = ({setTemperatureUnits}) => {
-    const buttons = [{title: 'ºC', default: true}, {title: 'ºF', default: false}]
-    //const [buttons] = useState(btn)
+    
+    const buttons = [{title: 'ºC', default: true}, {title: 'ºF', default: false}]  
     const [active, setActive] = useState(buttons[0])
 
     const handleClick = (e) =>{

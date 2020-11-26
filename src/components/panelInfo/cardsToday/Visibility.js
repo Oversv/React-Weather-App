@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types';
 
 const CardTitle = styled.h2`
     font-size: 16px;
@@ -22,7 +23,11 @@ export const Visibility = ({visibility}) => {
     return (
         <>
             <CardTitle>Visibility</CardTitle>
-            <CardValue>{visibility}<CardUnits> miles</CardUnits></CardValue>            
+            <CardValue>{visibility.toFixed(1).replace(/\./g, ',')}<CardUnits> miles</CardUnits></CardValue>            
         </>
     )
+}
+
+Visibility.propTypes = {
+    visibility: PropTypes.number.isRequired
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 const CardTitle = styled.h2`
     font-size: 16px;
@@ -25,4 +26,8 @@ export const AirPressure = ({airPressure}) => {
             <CardValue>{airPressure}<CardUnits> mb</CardUnits></CardValue>            
         </>
     )
+}
+
+AirPressure.propTypes = {
+    airPressure: PropTypes.number.isRequired
 }

@@ -7,9 +7,9 @@ import styled from 'styled-components'
 
 const Section = styled.section`
     text-align: center;
-    margin-top: 58px;     
-    height: calc(100vh - 134px );//134 = 76+58
-    
+    margin-top: 58px;
+    max-height: calc(100vh - 134px );//134 = 76+58
+
     @media (min-width: 1024px) {
         grid-column: 1;
         grid-row: 2;     
@@ -106,6 +106,8 @@ export const Weather = ({isLoading, error, weather, temperatureUnits}) => {
 }
 
 Weather.propTypes ={
-    weather: PropTypes.object,//!Añadir el resto, he cambiado el isRequired
+    weather: PropTypes.object,
+    isLoading: PropTypes.bool.isRequired,
+    error: PropTypes.bool,
     temperatureUnits: PropTypes.string.isRequired    
 }

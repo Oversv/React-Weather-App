@@ -16,6 +16,11 @@ const PanelInfo = styled.section`
         padding-top: 42px;         
     }      
 `
+const Footer = styled.footer`
+    text-align: center;
+    color: ${({theme}) => theme.fourth};
+    font-weight: 500;
+`
 
 export const WeatherPanelInfo = ({isLoading, error, weather, temperatureUnits, setTemperatureUnits}) => {    
    
@@ -41,6 +46,7 @@ export const WeatherPanelInfo = ({isLoading, error, weather, temperatureUnits, s
                     visibility={weather.consolidated_weather[0].visibility}
                     airPressure={weather.consolidated_weather[0].air_pressure}
                 />
+                <Footer>Oversv @ DevChallenges.io</Footer>
             </PanelInfo>
         )
     }
@@ -48,6 +54,8 @@ export const WeatherPanelInfo = ({isLoading, error, weather, temperatureUnits, s
 //TODO add all propTypes
 
 WeatherPanelInfo.propTypes = {
+    isLoading: PropTypes.bool.isRequired,
+    error: PropTypes.bool,
     weather: PropTypes.object,
     temperatureUnits: PropTypes.string.isRequired,
     setTemperatureUnits: PropTypes.func.isRequired

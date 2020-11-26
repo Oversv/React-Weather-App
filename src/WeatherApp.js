@@ -119,7 +119,7 @@ export const WeatherApp = () => {
                   </> 
           }     
 
-        </main>
+        </main>        
       </ThemeProvider>
     </>
   )
