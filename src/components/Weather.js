@@ -6,9 +6,21 @@ import celsiusToFahrenheit from '../helpers/celsiusToFahrenheit';
 import styled from 'styled-components'
 
 const Section = styled.section`
-    text-align: center;
-    margin-top: 58px;
-    max-height: calc(100vh - 134px );//134 = 76+58
+    text-align: center;    
+    height: 100vh;
+    margin: 0; 
+    position: relative;   
+    
+    &::before{
+      content: '';
+      background: url("./assets/img/Cloud-background.png") top center no-repeat;
+      position: absolute;
+      top: 50px;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.1;      
+    }
 
     @media (min-width: 1024px) {
         grid-column: 1;
@@ -23,7 +35,7 @@ const Temperature = styled.p`
     font-size: 144px;
     font-weight: 500;
     color: white;
-    margin-top: 40px;
+    margin-top: 30px;
     margin-bottom: 0;    
 `
 const Span = styled.span`
@@ -35,7 +47,7 @@ const WeatherName = styled.p`
     font-size: 36px;
     font-weight: 600;
     margin-top: 23px;
-    margin-bottom: 48px;
+    margin-bottom: 38px;
 
     @media (min-width: 1024px) {
         margin-top: 87px;
@@ -46,7 +58,7 @@ const Date = styled.p`
     font-weight: 500;
     word-spacing: 16px;
     margin-top: 0;
-    margin-bottom: 32px;
+    margin-bottom: 22px;
 
     @media (min-width: 1024px) {
         margin-top: 87px;

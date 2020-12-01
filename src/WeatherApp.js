@@ -15,26 +15,16 @@ const GlobalStyle = createGlobalStyle`
   *::after{
     box-sizing: border-box
   }
+  
   body{
     color: ${({theme}) => theme.second};
     font-family: 'Raleway', sans-serif;
     font-size: 18px;    
   }
 
-  main{
-    position: relative;    
+  main{     
     background-color: ${({theme}) => theme.first};
-    min-height: 100vh;
-    overflow: hidden;
-
-    &::before{
-      content: url("./assets/img/Cloud-background.png");
-      position: absolute;
-      top: 50px;
-      left: -160px;
-      opacity: 0.1;
-      transform: scale(0.85)
-    }
+    min-height: 100vh;   
 
     @media (min-width: 1024px) {
       display: grid;
@@ -95,7 +85,8 @@ export const WeatherApp = () => {
             modalShow={modalShow}
             setModalShow={setModalShow}
             setWoeid={setWoeid}
-          />   
+          />
+           
           {           
             (woeid.isLoading) 
               ? <Info>Loading...</Info>          
