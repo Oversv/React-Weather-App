@@ -36,7 +36,7 @@ const SmallCard = styled(Card)`
     height: 159px;
 `
 
-export const WeatherInfoToday = ({windSpeed, windDirection, windDirectionCompas, humidity, visibility, airPressure}) => {
+const WeatherInfoToday = ({windSpeed, windDirection, windDirectionCompas, humidity, visibility, airPressure}) => {
     
     return (
         <TodaySection>
@@ -81,3 +81,5 @@ WeatherInfoToday.propTypes = {
     visibility: PropTypes.number.isRequired,
     airPressure: PropTypes.number.isRequired,
 }
+
+export default React.memo(WeatherInfoToday)

@@ -79,7 +79,7 @@ const SpanIcon = styled.span`
     margin-right: 5px;
 `
 
-export const Weather = ({isLoading, error, weather, temperatureUnits}) => {
+const Weather = ({isLoading, error, weather, temperatureUnits}) => {
 
     if(isLoading){
 
@@ -123,3 +123,5 @@ Weather.propTypes ={
     error: PropTypes.bool,
     temperatureUnits: PropTypes.string.isRequired    
 }
+
+export default React.memo(Weather)

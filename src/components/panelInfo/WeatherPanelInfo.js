@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { WeatherNextDays } from './WeatherNextDays'
-import { WeatherInfoToday } from './WeatherInfoToday'
+import WeatherInfoToday from './WeatherInfoToday'
 import { ConvertTemperature } from './ConvertTemperature'
 import styled from 'styled-components'
 import MediaQuery from 'react-responsive'
@@ -22,7 +22,7 @@ const Footer = styled.footer`
     font-weight: 500;
 `
 
-export const WeatherPanelInfo = ({isLoading, error, weather, temperatureUnits, setTemperatureUnits}) => {    
+const WeatherPanelInfo = ({isLoading, error, weather, temperatureUnits, setTemperatureUnits}) => {    
    
     if(isLoading || error){
         return null
@@ -51,7 +51,6 @@ export const WeatherPanelInfo = ({isLoading, error, weather, temperatureUnits, s
         )
     }
 }
-//TODO add all propTypes
 
 WeatherPanelInfo.propTypes = {
     isLoading: PropTypes.bool.isRequired,
@@ -60,3 +59,5 @@ WeatherPanelInfo.propTypes = {
     temperatureUnits: PropTypes.string.isRequired,
     setTemperatureUnits: PropTypes.func.isRequired
 }
+
+export default React.memo(WeatherPanelInfo)

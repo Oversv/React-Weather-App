@@ -13,7 +13,7 @@ const Button = styled.button`
     border: none;    
 `
 
-export const SearchCity = ({setModalShow}) => {
+const SearchCity = ({setModalShow}) => {
 
     const handleClick = () =>{
         setModalShow(true)
@@ -27,3 +27,5 @@ export const SearchCity = ({setModalShow}) => {
 SearchCity.propTypes = {
     setModalShow: PropTypes.func.isRequired  
 }
+
+export default React.memo(SearchCity)

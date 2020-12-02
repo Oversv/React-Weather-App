@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { CurrentLocation } from './components/CurrentLocation';
-import { ModalSearchCity } from './components/modal/ModalSearchCity';
-import { SearchCity } from './components/SearchCity';
-import { Weather } from './components/Weather';
-import { WeatherPanelInfo } from './components/panelInfo/WeatherPanelInfo';
+import ModalSearchCity from './components/modal/ModalSearchCity';
+import Weather from './components/Weather';
+import WeatherPanelInfo from './components/panelInfo/WeatherPanelInfo';
+import TopBar from './components/TopBar';
 import getPosition from './helpers/getPosition';
 import getWeather from './helpers/getWeather';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components'
@@ -33,15 +32,7 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 `
-const TopBar = styled.section`
-  display: flex;
-  justify-content: space-between;
-  padding: 18px 12px; 
 
-    @media (min-width: 1024px) {
-        padding: 42px 46px;         
-    } 
-`
 const Info = styled.p`
   text-align: center;
 `
@@ -69,17 +60,17 @@ export const WeatherApp = () => {
 
   useEffect(()=>{
     getWeather(woeid.woeid, setWeather)
-}, [woeid.woeid]) 
+  }, [woeid.woeid]) 
 
   return (
     <> 
       <ThemeProvider theme={colors}>
       <GlobalStyle />
         <main>
-          <TopBar>
-            <SearchCity setModalShow={setModalShow}/>
-            <CurrentLocation setWoeid={setWoeid}/>
-          </TopBar>
+          <TopBar 
+            setModalShow={setModalShow}
+            setWoeid={setWoeid}
+          />
 
           <ModalSearchCity 
             modalShow={modalShow}

@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import getWoeidByLocation from '../../helpers/getWoeidByLocation';
 import PropTypes from 'prop-types';
-import { getStorage, addStorage } from '../../helpers/localStorage';
+import { getStorage } from '../../helpers/localStorage';
 import { v4 as id } from 'uuid';
 import LocationItem from './LocationItem';
-import { MdClose, MdSearch } from 'react-icons/md';
+import { MdClose } from 'react-icons/md';
+import FormLocation from './FormLocation';
 
 const Modal = styled.div`
     position: fixed;
@@ -29,35 +29,7 @@ const CloseModal = styled.p`
     right: 17px;    
     cursor: pointer;   
 `
-const Form = styled.form`
-    margin: 60px 12px 0 12px;
-    display: flex;
-    justify-content: space-between;    
-    align-items: center;       
-`
-const WrapperInput = styled.div`   
-    position: relative;
-    display: flex;  
-    align-items: center;
-    color: ${({theme}) => theme.second};
-`
-const Input = styled.input`
-    height: 48px;
-    width: 252px;   
-    border: 1px solid white; 
-    color: ${({theme}) => theme.second};
-    background-color: ${({theme}) => theme.first};
-    padding-left: 50px; 
-`
-const Search = styled.input`
-    height: 48px;
-    width: 86px;
-    color: white;
-    background-color: ${({theme}) => theme.bgBtn};
-    border: none;
-    font-size: 16px;
-    font-weight: 600;
-`
+
 const List = styled.ul`
     width: 94%; 
     list-style: none;
@@ -68,47 +40,19 @@ const List = styled.ul`
 `
 
 export const ModalSearchCity = ({modalShow, setModalShow, setWoeid}) => {  
-    
-    const [location, setLocation] = useState('')
+
     const [storage, setStorage] = useState(getStorage())
-
     const handleModal = () => setModalShow(false)
-    
-    const handleLocation = (e) => {
-
-        setLocation(e.target.value.trim())      
-    }
-    
-    const handleSubmit = (e) =>{
- 
-        e.preventDefault()       
-
-        if(location.length > 2){
-            addStorage(location)
-            setStorage(getStorage()) 
-            getWoeidByLocation(location, setWoeid) 
-            
-            e.target.reset()
-        }           
-    }    
 
     return (        
        <>
             <Modal modalShow={modalShow}>
                 <CloseModal onClick={handleModal}><MdClose size="1.4em"/></CloseModal>
-                <Form onSubmit={handleSubmit}>                    
-                    <WrapperInput>
-                        <MdSearch size="1.4em" style={{position: 'absolute', marginLeft: '10px'}}/>
-                        <Input                             
-                            type='search' 
-                            name="browser" 
-                            placeholder='search location'
-                            autoComplete="off"
-                            onChange={handleLocation}
-                        />
-                    </WrapperInput>
-                    <Search type='submit' value='Search'/>
-                </Form>
+                
+                <FormLocation 
+                    setStorage={setStorage}
+                    setWoeid={setWoeid}
+                />
 
                 <List>
                     {
@@ -132,3 +76,5 @@ ModalSearchCity.propTypes = {
     setModalShow: PropTypes.func.isRequired,
     setWoeid: PropTypes.func.isRequired
 }
+
+export default React.memo(ModalSearchCity)

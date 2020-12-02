@@ -31,7 +31,7 @@ const Temperature = styled.div`
     justify-content: space-evenly;   
 `
 
-export const WeatherCard = ({data, abbr, altAttribute, maxTemperature, minTemperature, temperatureUnits}) => {
+const WeatherCard = ({data, abbr, altAttribute, maxTemperature, minTemperature, temperatureUnits}) => {
       
     return (
         <Card>            
@@ -68,3 +68,5 @@ WeatherCard.propTypes = {
     minTemperature: PropTypes.number.isRequired,
     temperatureUnits: PropTypes.string.isRequired
 }
+
+export default WeatherCard
